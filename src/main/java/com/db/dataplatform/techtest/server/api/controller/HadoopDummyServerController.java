@@ -33,7 +33,12 @@ public class HadoopDummyServerController {
         log.info("Saving to Hadoop file system");
         Random random = new Random();
         int workDuration = random.ints(2000, 4000).findAny().getAsInt();
-
+        
+        /**
+         * comment this line: int workDuration = random.ints(2000, 4000).findAny().getAsInt();
+         * Consider a static value for workDuration = 2500 to make it workable
+         */
+        //int workDuration = 2500 ;
         // Simulate long running work.
         Thread.sleep(workDuration);
 

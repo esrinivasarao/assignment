@@ -43,11 +43,18 @@ public class ClientImpl implements Client {
 	public void pushData(DataEnvelope dataEnvelope) {
 
 		HttpEntity<DataEnvelope> request = new HttpEntity<>(dataEnvelope);
+		/**
+		 * Calling the server controller with URI_PUSHDATA by passing the request object 
+		 */		
 		ResponseEntity<Boolean> value = restTemplateConfiguration.createRestTemplate().postForEntity(URI_PUSHDATA,
 				request, Boolean.class);
 		log.info("Pushing data {} to {}", dataEnvelope.getDataHeader().getName(), URI_PUSHDATA);
 	}
 
+	/**
+	 * This is a client call to hit the URI_GETDATA end point to get peristance data for a block type
+	 *
+	 */	
 	@Override
 	public List<DataEnvelope> getData(String blockType) {
 		Map<String, String> uriVariables = new HashMap<>();
@@ -63,6 +70,10 @@ public class ClientImpl implements Client {
 		return dataEnvelopesList;
 	}
 
+	/**
+	 *  This is a client call to hit the URI_PATCHDATA end point to update block
+	 * 
+	 */
 	@Override
 	public boolean updateData(String blockName, String newBlockType) {
 		log.info("Updating blocktype to {} for block with name {}", newBlockType, blockName);

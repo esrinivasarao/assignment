@@ -20,6 +20,7 @@ import static com.db.dataplatform.techtest.Constant.DUMMY_DATA;
 
 @SpringBootApplication
 @EnableRetry
+@Slf4j
 public class TechTestApplication {
 
 	public static final String HEADER_NAME = "TSLA-USDGBP-10Y";
@@ -50,6 +51,7 @@ public class TechTestApplication {
 	private void queryData() {
 
 		List<DataEnvelope> data = client.getData(BlockTypeEnum.BLOCKTYPEA.name());
+		log.info("Get Data Details size  {} : Data {}",data.size(), data);
 	}
 
 	private void pushData() throws JsonProcessingException {
